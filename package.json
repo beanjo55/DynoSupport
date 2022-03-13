@@ -1,0 +1,17 @@
+{
+  "name": "dyno-support",
+  "version": "1.0.0",
+  "description": "Dyno Support Menu",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "eris": "^0.16.1",
+    "ini": "^2.0.0",
+    "pm2": "^5.2.0"
+  }
+}
