@@ -2,6 +2,7 @@ require('dotenv').config()
 
 const Eris = require('eris');
 const bot = new Eris(process.env.TOKEN);
+
 var fs = require('fs');
 const ini = require(`ini`);
 const config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
@@ -98,6 +99,10 @@ bot.on("messageCreate", (msg) => {
                     name: "Need Help?",
                     value: "Select the module/option you need help with below.",
                 },
+                {
+                    name: "Wait!",
+                    value: "This is a new change"
+                }
             ]
 
         }
