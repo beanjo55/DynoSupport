@@ -99,10 +99,6 @@ bot.on("messageCreate", (msg) => {
                     name: "Need Help?",
                     value: "Select the module/option you need help with below.",
                 },
-                {
-                    name: "Wait!",
-                    value: "This is a new change"
-                }
             ]
 
         }
