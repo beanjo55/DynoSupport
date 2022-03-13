@@ -70,20 +70,6 @@ bot.on("messageCreate", (msg) => {
 });
 
 bot.on("messageCreate", (msg) => {
-    const args = msg.content.split(" ").slice(1);
-    if (msg.content.startsWith("s.eval") && msg.author.id === config.botOwnerID) { // Eval cmd
-
-        try {
-            const evaled = eval(args.join(" "));
-            msg.channel.createMessage({content: `\`\`\`js\n${evaled}\n\`\`\``, messageReferenceID: msg.id});
-        } catch (error) {
-            const evaled = eval(args.join(" "));
-            msg.channel.createMessage({content: `\`ERROR\` \`\`\`xl\n${evaled}\n\`\`\``, messageReferenceID: msg.id});
-        }
-    }
-});
-
-bot.on("messageCreate", (msg) => {
     if(msg.content === "s.post") { // Post support menu
 
         let embed = {
