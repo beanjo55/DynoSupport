@@ -373,12 +373,11 @@ bot.on("interactionCreate", async (interaction) => {
             const redirectMsg = {
                 embeds: [{
                     color: config.errorColor,
-                    description: `Head to ${bot.getChannel(config.premiumChannelID).mention} and ask your question or state your problem in detail and a Support Team member will assist you soon.`,
+                    description: `Head to ${bot.getChannel(config.premiumChannelID).mention} or ${bot.getChannel(config.supportChannelID).mention} and ask your question or state your problem in detail and a Support Team member will assist you soon.`,
                 }],
                 flags: 64,
             }
             interaction.createMessage(redirectMsg);
-            bot.createMessage(config.premiumChannelID, `${interaction.member.mention} needs additional support. Please ask your question or state your issue in detail and a Support Team member will assist you soon.`);
             sendPostLog("addSup [PREM]", interaction.member.id);
         }
         else {
