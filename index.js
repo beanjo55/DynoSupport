@@ -324,7 +324,11 @@ bot.on("messageCreate", (msg) => {
                             {
                                 label: "Report a User",
                                 value: "report",
-                            }
+                            },
+                            {
+                                label: "Security Issue",
+                                value: "security",
+                            },
                             
                         ]
 
