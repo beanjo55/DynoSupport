@@ -455,6 +455,22 @@ bot.on("interactionCreate", async (interaction) => {
         }
     }
 
+    else if(interaction.data.custom_id === "options") {
+
+        if(interaction.data.values[0] === "report") {
+            const report = {
+                embeds: [{
+                    color: config.errorColor,
+                    description: "Please DM <@!174603896990203905> to submit a report.",
+                }],
+                flags: 64,
+            }
+
+            interaction.createMessage(report);
+            sendPostLog("report", interaction.member.id);
+        }
+    }
+
     // Individual module option selected
 
     // Action Log
