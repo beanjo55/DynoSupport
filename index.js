@@ -334,6 +334,15 @@ bot.on("messageCreate", (msg) => {
 
                     }
                     ]
+                },
+                {
+                    type: 1,
+                    components: [{
+                        type: 2,
+                        label: "Additional Support",
+                        style: 2,
+                        custom_id: "addSup",
+                    }]
                 }
             ]
         }
