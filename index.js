@@ -99,7 +99,7 @@ bot.on("messageCreate", (msg) => {
                         custom_id: "modules",
                         placeholder: "Select a module",
                         options: [
-                            {
+                            /* {
                                 label: "AFK",
                                 value: "afk",
                                 emoji: {
@@ -122,7 +122,7 @@ bot.on("messageCreate", (msg) => {
                                     id: "942551220344745994",
                                     name: "announcements",
                                 }
-                            },
+                            }, 
                             {
                                 label: "Auto Delete",
                                 value: "autoDelete",
@@ -130,7 +130,7 @@ bot.on("messageCreate", (msg) => {
                                     id: "942551220327948388",
                                     name: "autoDelete",
                                 }
-                            },
+                            }, 
                             {
                                 label: "Auto Message",
                                 value: "autoMsg",
@@ -154,7 +154,7 @@ bot.on("messageCreate", (msg) => {
                                     id: "942551220361519104",
                                     name: "autoban",
                                 }
-                            },
+                            }, */
                             {
                                 label: "Automod",
                                 value: "automod",
@@ -195,7 +195,7 @@ bot.on("messageCreate", (msg) => {
                                     name: "forms",
                                 }
                             },
-                            {
+                            /* {
                                 label: "Fun",
                                 value: "fun",
                                 emoji: {
@@ -210,7 +210,7 @@ bot.on("messageCreate", (msg) => {
                                     id: "942551221191999548",
                                     name: "giveaways",
                                 }
-                            },
+                            }, 
                             {
                                 label: "Message Embedder",
                                 value: "msgEmbedder",
@@ -218,7 +218,7 @@ bot.on("messageCreate", (msg) => {
                                     id: "942551220487335986",
                                     name: "msgEmbedder",
                                 }
-                            },
+                            }, */
                             {
                                 label: "Moderation",
                                 value: "moderation",
@@ -235,7 +235,7 @@ bot.on("messageCreate", (msg) => {
                                     name: "rr",
                                 }
                             },
-                            {
+                            /* {
                                 label: "Reddit",
                                 value: "reddit",
                                 emoji: {
@@ -290,7 +290,7 @@ bot.on("messageCreate", (msg) => {
                                     id: "942551221250707546",
                                     name: "vtl",
                                 }
-                            },
+                            }, */
                             {
                                 label: "Welcome",
                                 value: "welcome",
@@ -325,10 +325,10 @@ bot.on("messageCreate", (msg) => {
                                 label: "Report a User",
                                 value: "report",
                             },
-                            {
+                            /* {
                                 label: "Security Issue",
                                 value: "security",
-                            },
+                            }, */
                             
                         ]
 
