@@ -415,13 +415,13 @@ bot.on("interactionCreate", async (interaction) => {
 
         } */ 
 
-        if (interaction.data.values[0] === "actionLog") {
+        if (interaction.data.values[0] === "autoroles") {
 
-            const actionLogMenu = {
+            const autorolesMenu = {
                 embeds: [{
-                    title: "Action Log",
+                    title: "Autoroles",
                     color: config.dynoColor,
-                    description: ":one: How do I set up Action Log?\n:two: Some/all Action Log events are not posting.",
+                    description: `${config.oneEmote.mention} How do I set up Autoroles?\n:two: My Autoroles aren't working`,
                 }],
                 flags: 64,
                 components: [{
@@ -429,16 +429,16 @@ bot.on("interactionCreate", async (interaction) => {
                     components: [
                         {
                             type: 2,
-                            custom_id: "actionLog_setup",
+                            custom_id: "autoroles_setup",
                             style: 1,
                             emoji: {
-                                id: null,
-                                name: "1️⃣",
-                            },
+                                id: config.oneEmote.id,
+                                name: config.oneEmote.name,
+                            }
                         },
                         {
                             type: 2,
-                            custom_id: "actionLog_notWorking",
+                            custom_id: "autoroles_notWorking",
                             style: 1,
                             emoji: {
                                 id: null,
@@ -448,8 +448,8 @@ bot.on("interactionCreate", async (interaction) => {
                         {
                             type: 2,
                             style: 5,
-                            label: "Action Log Wiki",
-                            url: "https://wiki.dyno.gg/modules/actionlog",
+                            label: "Autoroles Wiki",
+                            url: "https://wiki.dyno.gg/modules/autoroles",
 
                         },
                         {
@@ -462,8 +462,8 @@ bot.on("interactionCreate", async (interaction) => {
                 }]
             }
 
-            interaction.createMessage(actionLogMenu);
-            sendPostLog("actionLogMenu", interaction.member.id);
+            interaction.createMessage(autorolesMenu);
+            sendPostLog("autorolesMenu", interaction.member.id);
         }
     }
 
@@ -485,12 +485,12 @@ bot.on("interactionCreate", async (interaction) => {
 
     // Individual module option selected
 
-    // Action Log
-    else if(interaction.data.custom_id === "actionLog_setup") {
-        const actionLog_setup_menu = {
+    // Autoroles
+    else if(interaction.data.custom_id === "autoroles_setup") {
+        const autoroles_setup_menu = {
             embeds: [{
                 color: config.dynoColor,
-                description: "**How 2 Action Log**\n\`1.\` Head to <https://www.dyno.gg/>, login, and select your server.\n\`2.\` Click on the \`Modules\` tab.\n\`3.\` Ensure that the \`Action Log\` module is enabled.\n\`4.\` Click the \`Settings\` button underneath the Action Log module.\n\`5.\` Enable \`Specify Channels for Each Event\` if you wish to choose a specific channel for each log event.\n\`6.\` Enable the events you want or set a channel for them if you selected the \`Specify Channels\` option.\n\`7.\` Select any channels you want to be ignored. Dyno will not log any events for these channels. You can also select categories.\n\`8.\` Select any roles you want to be ignored. Deleted messages sent by these roles will not be logged.\n\`~~\` **For more detailed information, check out <https://wiki.dyno.gg/en/modules/actionlog>!**\n\n**Note:** If Dyno does not have the \`Administrator\` permission, make sure Dyno has these permissions in your log channel on Discord:\n <:dynoSuccess:696561641227288639> \`Manage Webhooks\`\n <:dynoSuccess:696561641227288639> \`View Channel\`\n <:dynoSuccess:696561641227288639> \`Send Messages\`\n <:dynoSuccess:696561641227288639> \`Embed Links\`",
+                description: "**How 2 Autoroles**\n\`1.\` Head to <https://www.dyno.gg/> login, and select your server.\n\`2.\` Click on the \`Modules\` tab.\n\`3.\` Ensure that the \`Autoroles\` module is enabled.\n\`4.\` Click the \`Settings\` button underneath the Autoroles module.\n\`5.\` In the \`Select Role\` box, select the role you want Dyno to give users upon join.\n\`6.\` You can also add a \`Delay\` for Dyno to either add or remove the role, leave this option blank however if you wish Dyno to add the role immediately on user join.\n\`7.\` Select if you want Dyno to add or remove the role from the user.\n\`8.\` Click the \`Add\` button and you're all done!\n\`~~\` **For more detailed information, check out <https://wiki.dyno.gg/en/modules/autoroles>!**\n\n**Note:** The \`Dyno\` role should be physically higher than the role you want Dyno to give. Like so:\nhttps://i.imgur.com/PYAchiz.gif",
             }],
             flags: 64,
             components: [{
@@ -505,12 +505,12 @@ bot.on("interactionCreate", async (interaction) => {
             }],
         }
 
-        interaction.createMessage(actionLog_setup_menu);
-        sendPostLog("actionLog_setup", interaction.member.id);
+        interaction.createMessage(autoroles_setup_menu);
+        sendPostLog("autoroles_setup", interaction.member.id);
     }
 
-    else if(interaction.data.custom_id === "actionLog_notWorking") {
-        const actionLog_notWorking_menu = {
+    else if(interaction.data.custom_id === "autoroles_notWorking") {
+        const autoroles_notWorking_menu = {
             embeds: [{
                 color: config.dynoColor,
                 description: "Insert troubleshooting steps here",
