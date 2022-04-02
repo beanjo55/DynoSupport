@@ -163,7 +163,7 @@ bot.on("messageCreate", (msg) => {
                                     name: "automod",
                                 }
                             },
-                            {
+                            /* {
                                 label: "Autoresponder",
                                 value: "autoresponder",
                                 emoji: {
@@ -195,7 +195,7 @@ bot.on("messageCreate", (msg) => {
                                     name: "forms",
                                 }
                             },
-                            /* {
+                            {
                                 label: "Fun",
                                 value: "fun",
                                 emoji: {
@@ -218,7 +218,7 @@ bot.on("messageCreate", (msg) => {
                                     id: "942551220487335986",
                                     name: "msgEmbedder",
                                 }
-                            }, */
+                            },
                             {
                                 label: "Moderation",
                                 value: "moderation",
@@ -226,7 +226,7 @@ bot.on("messageCreate", (msg) => {
                                     id: "942551220529270804",
                                     name: "moderation",
                                 }
-                            },
+                            }, */
                             {
                                 label: "Reaction Roles",
                                 value: "rr",
@@ -302,7 +302,7 @@ bot.on("messageCreate", (msg) => {
                         ]
                     }]        
                 },
-                {
+                /*{
                     type: 1,
                     components: [{
                         type: 3,
@@ -325,16 +325,16 @@ bot.on("messageCreate", (msg) => {
                                 label: "Report a User",
                                 value: "report",
                             },
-                            /* {
+                            {
                                 label: "Security Issue",
                                 value: "security",
-                            }, */
+                            },
                             
                         ]
 
                     }
                     ]
-                },
+                }, */
                 {
                     type: 1,
                     components: [{
@@ -347,7 +347,7 @@ bot.on("messageCreate", (msg) => {
             ]
         }
 
-        bot.createMessage("942433488395730994", menu);
+        bot.createMessage(`${config.menuChannelID}`, menu);
         sendPostLog("supportMenu", msg.author.id);
         msg.delete();
     }
@@ -381,7 +381,7 @@ bot.on("interactionCreate", async (interaction) => {
         bot.disconnect();
     }
 
-    else if(interaction.data.custom_id === "addSup") {
+    else if(interaction.data.custom_id === "addSup") { // Additional Support button clicked
         if(interaction.member.roles.includes(config.premiumRoleID)) {
             const redirectMsg = {
                 embeds: [{
@@ -390,6 +390,8 @@ bot.on("interactionCreate", async (interaction) => {
                 }],
                 flags: 64,
             }
+
+
             interaction.createMessage(redirectMsg);
             sendPostLog("addSup [PREM]", interaction.member.id);
         }
@@ -402,26 +404,25 @@ bot.on("interactionCreate", async (interaction) => {
                 flags: 64,
             }
 
-            interaction.member.addRole(config.addSupRoleID,"Additional Support button clicked");
+            if(!interaction.member.roles.includes(config.addSupRoleID)) {
+                interaction.member.addRole(config.addSupRoleID,"Additional Support button clicked");
+                bot.createMessage(config.supportChannelID, `${interaction.member.mention} needs additional support. Please ask your question or state your issue in detail and a Support Team member will assist you soon.`);
+            }
+            
             interaction.createMessage(redirectMsg);
-            bot.createMessage(config.supportChannelID, `${interaction.member.mention} needs additional support. Please ask your question or state your issue in detail and a Support Team member will assist you soon.`);
             sendPostLog("addSup", interaction.member.id);
         }
     }
 
     else if(interaction.data.custom_id === "modules") { // Module dropdown selected
 
-        /* if (interaction.data.values[0] === "afk") {
+        if (interaction.data.values[0] === "automod") {
 
-        } */ 
-
-        if (interaction.data.values[0] === "autoroles") {
-
-            const autorolesMenu = {
+            const automodMenu = {
                 embeds: [{
-                    title: "Autoroles",
+                    title: "Automod",
                     color: config.dynoColor,
-                    description: `${config.oneEmote.mention} How do I set up Autoroles?\n:two: My Autoroles aren't working`,
+                    description: `${config.oneEmote.mention} How do I set up Automod?\n${config.twoEmote.mention} My Automod isn't working`,
                 }],
                 flags: 64,
                 components: [{
@@ -429,7 +430,7 @@ bot.on("interactionCreate", async (interaction) => {
                     components: [
                         {
                             type: 2,
-                            custom_id: "autoroles_setup",
+                            custom_id: "automod_setup",
                             style: 1,
                             emoji: {
                                 id: config.oneEmote.id,
@@ -438,18 +439,18 @@ bot.on("interactionCreate", async (interaction) => {
                         },
                         {
                             type: 2,
-                            custom_id: "autoroles_notWorking",
+                            custom_id: "automod_notWorking",
                             style: 1,
                             emoji: {
-                                id: null,
-                                name: "2️⃣",
+                                id: config.twoEmote.id,
+                                name: config.twoEmote.name,
                             },
                         },
                         {
                             type: 2,
                             style: 5,
-                            label: "Autoroles Wiki",
-                            url: "https://wiki.dyno.gg/modules/autoroles",
+                            label: "Automod Wiki",
+                            url: "https://wiki.dyno.gg/modules/automod",
 
                         },
                         {
@@ -462,8 +463,8 @@ bot.on("interactionCreate", async (interaction) => {
                 }]
             }
 
-            interaction.createMessage(autorolesMenu);
-            sendPostLog("autorolesMenu", interaction.member.id);
+            interaction.createMessage(automodMenu);
+            sendPostLog("automodMenu", interaction.member.id);
         }
     }
 
@@ -485,12 +486,12 @@ bot.on("interactionCreate", async (interaction) => {
 
     // Individual module option selected
 
-    // Autoroles
-    else if(interaction.data.custom_id === "autoroles_setup") {
-        const autoroles_setup_menu = {
+    // Automod
+    else if(interaction.data.custom_id === "automod_setup") {
+        const automod_setup_menu = {
             embeds: [{
                 color: config.dynoColor,
-                description: "**How 2 Autoroles**\n\`1.\` Head to <https://www.dyno.gg/> login, and select your server.\n\`2.\` Click on the \`Modules\` tab.\n\`3.\` Ensure that the \`Autoroles\` module is enabled.\n\`4.\` Click the \`Settings\` button underneath the Autoroles module.\n\`5.\` In the \`Select Role\` box, select the role you want Dyno to give users upon join.\n\`6.\` You can also add a \`Delay\` for Dyno to either add or remove the role, leave this option blank however if you wish Dyno to add the role immediately on user join.\n\`7.\` Select if you want Dyno to add or remove the role from the user.\n\`8.\` Click the \`Add\` button and you're all done!\n\`~~\` **For more detailed information, check out <https://wiki.dyno.gg/en/modules/autoroles>!**\n\n**Note:** The \`Dyno\` role should be physically higher than the role you want Dyno to give. Like so:\nhttps://i.imgur.com/PYAchiz.gif",
+                description: "**How 2 Automod**\n\`1.\` Head to <https://www.dyno.gg/>, login, and select your server.\n\`2.\` Locate the \`Modules\` tab.\n\`3.\` Ensure the \`Automod\` module is enabled.\n\`4.\` Click the \`Settings\` button underneath the Automod module or navigate to it via the sidebar.\n\`5.\` Be sure to select a \`Log Channel\`.\n\`6.\` Check the box \`Enable Automute\` if you want to use the Auto Mute options.\n\`7.\` Check the box \`Disable default Banned Words\` if you wish to not use Dyno's default banned words.\n\`8.\` Select and edit the Filter Options you want to enable. (\`Discord Invites\` & \`Fast Message Spam\` recommended).\n\`9.\` At the top of the page, select \`Banned Words\` to edit your banned words list or select \`Link Blacklist\`/\`Whitelist\` if you wish to edit those settings\n.\nhttps://cdn.dyno.gg/tags/web_bannedwords.png\n**Notes:** \n\`~\` \`Ignored Channels\` means Automod will **not** work in the selected channels.\n\`~\` \`Allowed Roles\` means the selected roles will be **immune** from Automod.\n\`~\` Individual filter options can also be changed using the <:DynoGear:598875553457766424> option next to each filter.\n\`~\` \`Banned Words (wildcard)\` means that Dyno will look for the word within another word. For example if the word **hi** was banned in wildcard **hi**re would be seen as a bad word.\n\`~\` \`Banned Words (exact)\` means that Dyno will only look for that **exact** word within a message.\n\`~\` Automod **ignores** the Server Owner, Server Admins, Server Managers and all Server Moderators added using \`?addmod\`.\n\`~\` **For more detailed information, check out <https://wiki.dyno.gg/en/modules/automod>!**",
             }],
             flags: 64,
             components: [{
@@ -505,15 +506,15 @@ bot.on("interactionCreate", async (interaction) => {
             }],
         }
 
-        interaction.createMessage(autoroles_setup_menu);
-        sendPostLog("autoroles_setup", interaction.member.id);
+        interaction.createMessage(automod_setup_menu);
+        sendPostLog("automod_setup", interaction.member.id);
     }
 
-    else if(interaction.data.custom_id === "autoroles_notWorking") {
-        const autoroles_notWorking_menu = {
+    else if(interaction.data.custom_id === "automod_notWorking") {
+        const automod_notWorking_menu = {
             embeds: [{
                 color: config.dynoColor,
-                description: "Insert troubleshooting steps here",
+                description: "Insert troubleshooting steps here (You get the idea)",
             }],
             flags: 64,
             components: [{
@@ -527,8 +528,10 @@ bot.on("interactionCreate", async (interaction) => {
                 }],
             }],
         }
-    }
 
+        interaction.createMessage(automod_notWorking_menu);
+        sendPostLog("automod_notWorking", interaction.member.id);
+    }
 });
 
 bot.connect();
