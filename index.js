@@ -7,6 +7,8 @@ var fs = require('fs');
 const ini = require(`ini`);
 const config = ini.parse(fs.readFileSync('./config.ini', 'utf-8'));
 
+const db = require('./firestore.js');
+
 function sendPostLog(event, userID) {
     const postLog = {
         embeds: [{

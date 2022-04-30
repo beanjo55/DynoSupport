@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/firestore": "^5.0.2",
     "dotenv": "^16.0.0",
     "eris": "^0.16.1",
     "ini": "^2.0.0",
